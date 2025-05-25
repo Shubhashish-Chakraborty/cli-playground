@@ -72,17 +72,39 @@ def SHOW_ALL_USERS():
             print("⚠️ No Users Found!")
             speak("No Users Found!")
             return
-
-        # print("username\t\temail\t\tcontactNumber")
-        # for user in range(len()):
-        #     print(user['username'], "\t\t", user['email'], "\t\t", user['contactNumber'])
-
-        print("Sno\t\tusername\t\temail\t\tcontactNumber")
-        print("-------------------------------------------------------------------------")
         
+        # col_widths = {
+        #     "Sno": 5,
+        #     "username": 20,
+        #     "email": 30,
+        #     "contactNumber": 15
+        # }
+
+        col_widths = {
+            "Sno": 5,
+            "username": 28,
+            "email": 35,
+            "contactNumber": 15
+        }
+        
+        # Printing the header
+        header = f"{'Sno'.ljust(col_widths['Sno'])}  {'Username'.ljust(col_widths['username'])}  {'Email'.ljust(col_widths['email'])}  {'Contact Number'.ljust(col_widths['contactNumber'])}"
+        print(header)
+        print("-" * len(header))
+
+        # Print the user's data
         for index, user in enumerate(data['finalUserArray'], start=1):
-            print(f"{index}\t\t{user['username']}\t\t{user['email']}\t\t{user['contactNumber']}")
-        print()
+            row = f"{str(index).ljust(col_widths['Sno'])}  {user['username'].ljust(col_widths['username'])}  {user['email'].ljust(col_widths['email'])}  {user['contactNumber'].ljust(col_widths['contactNumber'])}"
+            print(row)
+
+        # print("Sno\t\tusername\t\temail\t\tcontactNumber")
+        # print("-------------------------------------------------------------------------")
+        
+        # for index, user in enumerate(data['finalUserArray'], start=1):
+        #     print(f"{index}\t\t{user['username']}\t\t{user['email']}\t\t{user['contactNumber']}")
+        # print()
+
+        
     except:
         print("❌ Something Went Wrong, Please Try Again Later!:" )
 
