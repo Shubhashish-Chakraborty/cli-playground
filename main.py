@@ -1,20 +1,20 @@
 from dotenv import load_dotenv
 import os
 import requests
-from win32com.client import Dispatch
+from utils.speak import speak
+
 
 
 # Loading environment variables from .env file in the root directory 
 load_dotenv()
 
 BACKEND_URL = os.getenv("BACKEND_URL")
+try:
+    if not BACKEND_URL:
+        raise ValueError("BACKEND_URL not found in .env file!")
+except:
+    print("❌ BACKEND_URL not found in .env file!")
 
-if not BACKEND_URL:
-    raise ValueError("❌ BACKEND_URL not found in .env file!")
-
-def speak(str):
-    speak = Dispatch(('SAPI.SpVoice'))
-    speak.Speak(str)
 
 def SIGNUP():
 
@@ -87,8 +87,11 @@ def SHOW_ALL_USERS():
         print("❌ Something Went Wrong, Please Try Again Later!:" )
 
 
-
 def main():
+    if not BACKEND_URL:
+        speak("Create a .env file in the root directory and add your backend url in it.")
+        return
+    
     while True:
         print("\nOptions:")
 
